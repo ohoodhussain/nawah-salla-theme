@@ -83,3 +83,4 @@ body.nawah-ready [data-testid="store-home-fixed-banner"]{display:none}
 .theme-raed salla-installment > div{border-radius:16px;overflow:hidden}
 /* Buy box sections */
 .theme-raed .product-form section,.theme-raed .sticky-product-bar{background-color:var(--n-surface)!important;border:1px solid var(--n-line);border-radius:16px}
+.theme-raed .s-product-card-wishlist-btn .s-button-element,.theme-raed .s-product-card-wishlist-btn button,.theme-raed .btn--wishlist button{background:var(--n-surface-2)!important;border-color:var(--n-line)!important;color:var(--n-white)!important}
