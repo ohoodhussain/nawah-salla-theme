@@ -289,8 +289,9 @@
         "ar": "واجهة المعسكر",
         "en": "Bootcamp hero"
       },
-      "icon": "sicon-award-ribbon",
+      "icon": "sicon-image-carousel",
       "path": "home.nawah-bootcamp-hero",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
       "is_default": true,
       "fields": [
         {
@@ -459,8 +460,9 @@
         "ar": "مسار المعسكر",
         "en": "Bootcamp program"
       },
-      "icon": "sicon-list",
+      "icon": "sicon-layout-grid-rearrange",
       "path": "home.nawah-program",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
       "is_default": true,
       "fields": [
         {
@@ -501,7 +503,6 @@
           "source": "products",
           "searchable": true,
           "maxLength": 1,
-          "minLength": 0,
           "value": []
         },
         {
@@ -580,7 +581,9 @@
               "minLength": 0,
               "maxLength": 120
             }
-          ]
+          ],
+          "icon": "sicon-list",
+          "description": null
         },
         {
           "id": "projects",
@@ -659,7 +662,9 @@
               "minLength": 0,
               "maxLength": 160
             }
-          ]
+          ],
+          "icon": "sicon-list",
+          "description": null
         },
         {
           "id": "pillars",
@@ -721,7 +726,9 @@
               "minLength": 0,
               "maxLength": 120
             }
-          ]
+          ],
+          "icon": "sicon-list",
+          "description": null
         }
       ]
     },
@@ -733,6 +740,7 @@
       },
       "icon": "sicon-packed-box",
       "path": "home.nawah-shelf",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
       "is_default": true,
       "fields": [
         {
@@ -773,7 +781,6 @@
           "source": "categories",
           "searchable": true,
           "maxLength": 6,
-          "minLength": 0,
           "value": []
         },
         {
@@ -801,8 +808,9 @@
         "ar": "تجربة لوحة المقهى",
         "en": "Café dashboard demo"
       },
-      "icon": "sicon-chart-bar",
+      "icon": "sicon-image-carousel",
       "path": "home.nawah-demo",
+      "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
       "is_default": true,
       "fields": [
         {
@@ -843,7 +851,6 @@
           "source": "products",
           "searchable": true,
           "maxLength": 1,
-          "minLength": 0,
           "value": []
         },
         {
