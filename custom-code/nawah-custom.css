@@ -65,3 +65,21 @@ body.nawah-ready [data-testid="store-home-fixed-banner"]{display:none}
 .theme-raed .store-footer a:hover,.theme-raed .store-footer .s-menu-footer-item:hover{color:var(--n-white)!important}
 .theme-raed .store-footer > div:last-child{border-block-start:1px solid var(--n-line)}
 .theme-raed .store-footer .s-contacts-icon,.theme-raed .store-footer .s-social-link a{background:var(--n-surface)!important;border-color:var(--n-line)!important;color:var(--n-white)!important}
+
+/* ===== التعديل الثالث: صفحة المنتج ===== */
+/* Product descriptions pasted with their own black text on white: drop those colours */
+.theme-raed .product__description *,.theme-raed .article--main *{background-color:transparent!important;color:inherit!important;font-family:inherit!important}
+.theme-raed .product__description,.theme-raed .article--main{color:var(--n-soft)!important;font-size:1.0625rem;line-height:1.9}
+.theme-raed .article--main h1,.theme-raed .article--main h2,.theme-raed .article--main h3,.theme-raed .article--main strong,.theme-raed .article--main b{color:var(--n-white)!important}
+#btn-show-more{color:var(--n-emerald)!important}
+/* Gallery background */
+.theme-raed .details-slider .swiper,.theme-raed .details-slider .swiper-slide,.theme-raed .homeslider__slide{background-color:var(--n-navy-deep)!important}
+.theme-raed .details-slider{border:1px solid var(--n-line);border-radius:18px;overflow:hidden}
+/* Slider arrows and wishlist buttons everywhere */
+.theme-raed .s-slider-nav-arrow{background:var(--n-surface-2)!important;border:1px solid var(--n-line)!important;color:var(--n-white)!important;box-shadow:none!important}
+.theme-raed .s-slider-nav-arrow *{color:var(--n-white)!important;fill:var(--n-white)}
+.theme-raed .s-product-card-wishlist-btn,.theme-raed .btn--wishlist .s-button-element{background:var(--n-surface-2)!important;border-color:var(--n-line)!important;color:var(--n-white)!important}
+/* Tabby stays white, since its text and logo are made for white, but sits in a rounded card */
+.theme-raed salla-installment > div{border-radius:16px;overflow:hidden}
+/* Buy box sections */
+.theme-raed .product-form section,.theme-raed .sticky-product-bar{background-color:var(--n-surface)!important;border:1px solid var(--n-line);border-radius:16px}
