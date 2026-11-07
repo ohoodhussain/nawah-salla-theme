@@ -1,0 +1,70 @@
+{#
+| Variable                      | Type      | Description                                        |
+|-------------------------------|-----------|----------------------------------------------------|
+| component.title               | ?string   | Section title                                      |
+| component.products            | Product[] | The bootcamp, for the closing price and button     |
+| component.tools[]             | object[]  | name, description                                  |
+| component.projects[]          | object[]  | image, title, tag, description                     |
+| component.pillars[]           | object[]  | title, description                                 |
+| component.cta_label           | ?string   | Falls back to the product's add-to-cart label      |
+#}
+{% set bootcamp = component.products|first %}
+{% set default_images = ['images/nawah/cafe-window.jpg', 'images/nawah/voltedge.jpg', 'images/nawah/hr-workforce.jpg'] %}
+<section component-id="{{ componentId }}" data-testid="nawah-program" id="nawah-program" class="nawah-program">
+    <div class="container nawah-program__in">
+        {% if component.title %}<h2 class="nawah-title">{{ component.title }}</h2>{% endif %}
+
+        {% if component.tools|length %}
+            <ol class="nawah-track">
+                {% for tool in component.tools %}
+                    <li>
+                        <div class="nawah-track__node"><i></i><u></u></div>
+                        <div>
+                            <b>{{ tool.name }}</b>
+                            {% if tool.description %}<span>{{ tool.description }}</span>{% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+
+        {% if component.projects|length %}
+            <nawah-project-tabs class="nawah-showcase">
+                <div class="nawah-showcase__stage">
+                    {% set first = component.projects|first %}
+                    <img data-stage src="{{ first.image ?: default_images[0]|asset }}" alt="{{ first.title }}" loading="lazy">
+                </div>
+                <div class="nawah-showcase__tabs" role="group">
+                    {% for project in component.projects %}
+                        {% set fallback = default_images[loop.index0] ?? default_images[0] %}
+                        <button type="button" aria-pressed="{{ loop.first ? 'true' : 'false' }}" data-image="{{ project.image ?: fallback|asset }}" data-title="{{ project.title }}">
+                            <b>{{ project.title }}{% if project.tag %} <em>{{ project.tag }}</em>{% endif %}</b>
+                            {% if project.description %}<span>{{ project.description }}</span>{% endif %}
+                        </button>
+                    {% endfor %}
+                </div>
+            </nawah-project-tabs>
+        {% endif %}
+
+        {% if component.pillars|length %}
+            <div class="nawah-pillars">
+                {% for pillar in component.pillars %}
+                    <div>
+                        <h3>{{ pillar.title }}</h3>
+                        {% if pillar.description %}<p>{{ pillar.description }}</p>{% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if bootcamp %}
+            <div class="nawah-cta">
+                <h3>{{ component.display_name ?: bootcamp.name }}</h3>
+                <div class="nawah-buy">
+                    <div class="nawah-price"><b>{{ (bootcamp.is_on_sale ? bootcamp.sale_price : (bootcamp.starting_price ?: bootcamp.price))|money }}</b></div>
+                    <a class="nawah-btn nawah-btn--primary nawah-btn--lg" href="{{ bootcamp.url }}">{{ component.cta_label ?: bootcamp.add_to_cart_label }}</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>

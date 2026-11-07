@@ -82,14 +82,18 @@
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap">
+    <meta name="theme-color" content="#071E2B">
+
     <style>
         :root {
-            --font-main: '{{theme.font.name}}';
-            --color-primary: {{ theme.color.primary }};
-            --color-primary-dark: {{ theme.color.darker(0.15) }};
-            --color-primary-light: {{ theme.color.lighter(0.15) }};
-            --color-primary-reverse: {{ theme.color.reverse_text }};
+            /* Nawah identity is fixed in the theme, so the store cannot drift from it */
+            --font-main: 'Tajawal', '{{theme.font.name}}', sans-serif;
+            --color-primary: #087F73;
+            --color-primary-dark: #066A60;
+            --color-primary-light: #18A57A;
+            --color-primary-reverse: #FFFFFF;
             /* Theme specific variables */
             --s-radius: .75rem;
         }

@@ -1,0 +1,76 @@
+{#
+| Variable                 | Type      | Description                                             |
+|--------------------------|-----------|---------------------------------------------------------|
+| component.products       | Product[] | The bootcamp, picked by the merchant (one product)      |
+| component.display_name   | ?string   | Short name for the hero. Falls back to the product name |
+| component.eyebrow        | ?string   | Small line above the name                               |
+| component.lede           | ?string   | Short value statement                                   |
+| component.tools          | ?string   | Comma-separated tools                                   |
+| component.duration       | ?string   | Hidden when empty                                       |
+| component.enrollment     | ?string   | Hidden when empty                                       |
+| component.cta_label      | ?string   | Falls back to the product's own add-to-cart label       |
+| component.more_label     | ?string   | Link to the program section. Hidden when empty          |
+| component.image_main     | ?string   | Falls back to the bundled sample project                |
+| component.image_start    | ?string   | Falls back to the bundled sample project                |
+| component.image_end      | ?string   | Falls back to the bundled sample project                |
+| component.caption        | ?string   | Line under the visual                                   |
+
+Name, price, discount, availability and URL always come from the picked Salla product.
+#}
+{% set bootcamp = component.products|first %}
+{% if bootcamp %}
+<section component-id="{{ componentId }}" data-testid="nawah-bootcamp-hero" class="nawah-hero" data-nawah-hero>
+    <div class="container nawah-hero__row">
+        <div class="nawah-hero__copy">
+            {% if component.eyebrow %}<div class="nawah-eyebrow">{{ component.eyebrow }}</div>{% endif %}
+            <h2 class="nawah-hero__title"><a href="{{ bootcamp.url }}">{{ component.display_name ?: bootcamp.name }}</a></h2>
+            {% if component.lede %}<p class="nawah-hero__lede">{{ component.lede }}</p>{% endif %}
+
+            {% if component.tools %}
+                <ul class="nawah-tools">
+                    {% for tool in component.tools|split(',') %}<li>{{ tool|trim }}</li>{% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if component.duration or component.enrollment %}
+                <div class="nawah-facts">
+                    {% if component.duration %}<span>{{ component.duration }}</span>{% endif %}
+                    {% if component.enrollment %}<span>{{ component.enrollment }}</span>{% endif %}
+                </div>
+            {% endif %}
+
+            <div class="nawah-buy">
+                <div class="nawah-price">
+                    {% if bootcamp.is_on_sale %}
+                        <b>{{ bootcamp.sale_price|money }}</b> <s>{{ bootcamp.regular_price|money }}</s>
+                    {% elseif bootcamp.starting_price %}
+                        <b>{{ bootcamp.starting_price|money }}</b>
+                    {% else %}
+                        <b>{{ bootcamp.price|money }}</b>
+                    {% endif %}
+                </div>
+                <a class="nawah-btn nawah-btn--primary nawah-btn--lg" href="{{ bootcamp.url }}">{{ component.cta_label ?: bootcamp.add_to_cart_label }}</a>
+                {% if component.more_label %}
+                    <a class="nawah-btn nawah-btn--ghost nawah-hero__more" href="#nawah-program">{{ component.more_label }}</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="nawah-hero__visual">
+            <div class="nawah-collage" aria-hidden="true">
+                <svg viewBox="10 26 80 50"><path d="M10 36A40 40 0 0 0 90 36H73A23 23 0 0 1 27 36Z" fill="#0C2A38" stroke="#1E4A58" stroke-width="0.25"></path><circle cx="50" cy="36" r="10" fill="#18A57A"></circle></svg>
+                <img class="nawah-collage__end" loading="lazy" alt="" src="{{ component.image_end ?: 'images/nawah/voltedge.jpg'|asset }}">
+                <img class="nawah-collage__start" loading="lazy" alt="" src="{{ component.image_start ?: 'images/nawah/hr-panel.jpg'|asset }}">
+                <img class="nawah-collage__main" fetchpriority="high" alt="" src="{{ component.image_main ?: 'images/nawah/cafe-window.jpg'|asset }}">
+            </div>
+            {% if component.caption %}<p class="nawah-note nawah-collage__cap">{{ component.caption }}</p>{% endif %}
+        </div>
+    </div>
+
+    {# Phone only: appears once the hero has scrolled away. See assets/js/nawah.js #}
+    <div class="nawah-stickybar" data-nawah-stickybar hidden>
+        <span class="nawah-stickybar__price">{{ (bootcamp.is_on_sale ? bootcamp.sale_price : (bootcamp.starting_price ?: bootcamp.price))|money }}</span>
+        <a class="nawah-btn nawah-btn--primary" href="{{ bootcamp.url }}">{{ component.cta_label ?: bootcamp.add_to_cart_label }}</a>
+    </div>
+</section>
+{% endif %}

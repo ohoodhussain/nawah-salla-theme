@@ -1,0 +1,37 @@
+{#
+    Extra blocks on the product page, switched on from the Salla dashboard with a product tag:
+    - nawah-bootcamp : what the bootcamp includes
+    - nawah-demo-cafe: the live café dashboard preview
+    Everything else on the page stays Salla's own product data.
+#}
+{% set nawah_is_bootcamp = false %}
+{% set nawah_has_demo = false %}
+{% for tag in product.tags %}
+    {% if tag.name == 'nawah-bootcamp' %}{% set nawah_is_bootcamp = true %}{% endif %}
+    {% if tag.name == 'nawah-demo-cafe' %}{% set nawah_has_demo = true %}{% endif %}
+{% endfor %}
+
+{% if nawah_is_bootcamp %}
+    <section class="container nawah-extra" data-testid="nawah-bootcamp-extra">
+        <h2 class="nawah-title">ماذا يشمل المعسكر</h2>
+        <ul class="nawah-tools">
+            <li>Excel</li><li>Power BI</li><li>DAX</li><li>SQL</li><li>AI</li>
+        </ul>
+        <div class="nawah-pillars">
+            <div><h3>+14 جلسة مسجلة</h3><p>Excel و Power BI و DAX و SQL و AI، بمحتوى منظم.</p></div>
+            <div><h3>7 جلسات 1:1 أسبوعية</h3><p>45 دقيقة مع عهود مباشرة لمراجعة المشاريع والأهداف.</p></div>
+            <div><h3>5 مشاريع حقيقية</h3><p>Sales و HR و E-Commerce و AI Churn ومشروع التخرج.</p></div>
+            <div><h3>شهادة إتمام معتمدة</h3><p>بعد استيفاء جميع متطلبات البرنامج.</p></div>
+            <div><h3>البورتفوليو والمسار المهني</h3><p>LinkedIn والسيرة الذاتية واستراتيجية البحث الوظيفي والمقابلات.</p></div>
+            <div><h3>وحدة AI في تحليل البيانات</h3><p>ChatGPT و Claude للتحليل، ومكتبة Prompts.</p></div>
+        </div>
+    </section>
+{% endif %}
+
+{% if nawah_has_demo %}
+    <section class="container nawah-extra" data-testid="nawah-demo-extra">
+        <h2 class="nawah-title">التجربة قبل الشراء</h2>
+        <p class="nawah-sub">معاينة على الويب ببيانات تجريبية، والمنتج نفسه ملف Excel.</p>
+        <nawah-dashboard-demo></nawah-dashboard-demo>
+    </section>
+{% endif %}

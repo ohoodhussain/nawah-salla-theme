@@ -1,0 +1,33 @@
+{#
+| Variable             | Type       | Description                                           |
+|----------------------|------------|-------------------------------------------------------|
+| component.title      | ?string    | Section title                                         |
+| component.subtitle   | ?string    | Section description                                   |
+| component.categories | Category[] | Links to the native Salla category pages              |
+| component.products   | Product[]  | Curated products, rendered by Salla's own product list |
+#}
+<section component-id="{{ componentId }}" data-testid="nawah-shelf" class="nawah-shelf">
+    <div class="container nawah-shelf__in">
+        <div>
+            {% if component.title %}<h2 class="nawah-title">{{ component.title }}</h2>{% endif %}
+            {% if component.subtitle %}<p class="nawah-sub">{{ component.subtitle }}</p>{% endif %}
+        </div>
+
+        {% if component.categories|length %}
+            <div class="nawah-cats">
+                {% for category in component.categories %}
+                    <a href="{{ category.url }}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if component.products|length %}
+            <salla-products-list
+                data-testid="nawah-shelf-products"
+                source="selected"
+                source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"
+                limit="{{ component.products|length }}">
+            </salla-products-list>
+        {% endif %}
+    </div>
+</section>

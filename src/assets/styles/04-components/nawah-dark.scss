@@ -1,0 +1,103 @@
+/*
+ * Dark theme layer over Raed. It re-colours the native pages (category, product, cart, account)
+ * without touching their markup, so Salla's own updates to those templates stay easy to take.
+ * Check every native page on the demo store: Salla's web components bring their own classes.
+ */
+
+:root {
+  --main-text-color: var(--n-off);
+  --main-text-color-dark: var(--n-white);
+  --color-text: var(--n-soft);
+  --bg-gray: var(--n-surface);
+  --color-grey: var(--n-surface);
+  --color-light-grey: var(--n-line);
+  --infinte-color: var(--n-line);
+  color-scheme: dark;
+}
+
+body.theme-raed {
+  background: var(--n-navy);
+  color: var(--n-off);
+}
+
+/* Surfaces */
+.theme-raed {
+  .bg-white, .bg-gray-50, .bg-gray-100, .bg-gray-200 { background-color: var(--n-surface) !important; }
+  .main-nav-container, .main-nav-container .inner, .top-navbar { background-color: var(--n-navy) !important; }
+  .main-nav-container { border-block-end: 1px solid var(--n-line); box-shadow: none; }
+  .top-navbar { border-block-end: 1px solid var(--n-line); }
+  .store-footer { background-color: var(--n-navy-deep); color: var(--n-soft); }
+  .s-modal-body, .s-modal-wrapper, .s-modal-header, .s-menu-topnav-item, .s-user-menu-dropdown { background-color: var(--n-surface); color: var(--n-off); }
+}
+
+/* Text */
+.theme-raed {
+  h1, h2, h3, h4, h5, h6 { color: var(--n-white); }
+  .text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-dark { color: var(--n-off) !important; }
+  .text-gray-600, .text-gray-500, .text-gray-400, .color-grey { color: var(--n-muted) !important; }
+  .text-primary, .link--primary { color: var(--n-emerald) !important; }
+  .article--main, .article { color: var(--n-soft); a { color: var(--n-emerald); } }
+  .text-red-800 { color: var(--n-white) !important; }
+}
+
+/* Lines */
+.theme-raed {
+  .border-gray-100, .border-gray-200, .border-gray-300 { border-color: var(--n-line) !important; }
+  .divide-gray-100 > * + *, .divide-gray-200 > * + * { border-color: var(--n-line) !important; }
+}
+
+/* Forms */
+.theme-raed {
+  input:not([type="radio"]):not([type="checkbox"]), select, textarea, .form-input, .s-form-control {
+    background-color: var(--n-navy-deep);
+    border-color: var(--n-line);
+    color: var(--n-white);
+    &::placeholder { color: var(--n-muted); }
+  }
+}
+
+/* Product cards from Salla's product list */
+.theme-raed {
+  .s-product-card-entry {
+    background: var(--n-surface);
+    border: 1px solid var(--n-line);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: border-color .2s ease;
+    &:hover { border-color: var(--n-emerald); }
+  }
+  .s-product-card-image { background: var(--n-navy-deep); }
+  .s-product-card-content { padding: 18px 20px 20px; }
+  .s-product-card-content-title { font-size: 1.25rem; font-weight: 800; line-height: 1.35; }
+  .s-product-card-price, .s-product-card-sale-price h4, .s-product-card-starting-price h4 { font-size: 1.375rem; }
+  .s-product-card-content-title a { color: var(--n-white); }
+  .s-product-card-content-subtitle { color: var(--n-soft); }
+  .s-product-card-price, .s-product-card-sale-price h4, .s-product-card-starting-price h4 { color: var(--n-white); font-weight: 900; }
+  .s-product-card-sale-price span { color: var(--n-muted); }
+}
+
+/* Outline buttons: teal text on navy is too faint, so the label stays white */
+.theme-raed {
+  .s-button-primary-outline,
+  .s-button-light-outline,
+  .s-button-gray-outline,
+  .s-button-dark-outline {
+    color: var(--n-white);
+    border-color: var(--n-teal);
+    background: transparent;
+    &:hover { border-color: var(--n-emerald); background: var(--n-surface-2); }
+  }
+  .s-product-card-wishlist-btn .s-button-element { background: var(--n-surface-2); color: var(--n-white); }
+}
+
+/* Curated products use the same three-up rhythm as the design */
+.theme-raed .nawah-shelf salla-products-list { display: block; }
+
+/* Gallery takes more room than the buy column on the product page */
+@media (min-width: 768px) {
+  .theme-raed .container--product-details .sidebar { width: 56% !important; }
+  .theme-raed .container--product-details .main-content { width: 44%; }
+}
+
+/* The native sticky buy bar on phones */
+.theme-raed .sticky-product-bar { border-block-start: 1px solid var(--n-line); box-shadow: none; }

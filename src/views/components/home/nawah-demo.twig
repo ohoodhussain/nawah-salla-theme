@@ -1,0 +1,23 @@
+{#
+| Variable           | Type      | Description                                  |
+|--------------------|-----------|----------------------------------------------|
+| component.title    | ?string   | Section title                                |
+| component.text     | ?string   | Must say this is a web preview on sample data |
+| component.products | Product[] | The product this demo previews               |
+| component.link     | ?string   | Button label                                 |
+#}
+{% set demo_product = component.products|first %}
+<section component-id="{{ componentId }}" data-testid="nawah-demo" class="nawah-demo-sec">
+    <div class="container nawah-demo-sec__row">
+        <div class="nawah-demo-sec__copy">
+            {% if component.title %}<h2 class="nawah-title">{{ component.title }}</h2>{% endif %}
+            {% if component.text %}<p class="nawah-sub">{{ component.text }}</p>{% endif %}
+            {% if demo_product %}
+                <a class="nawah-btn nawah-btn--primary" href="{{ demo_product.url }}">{{ component.link ?: demo_product.name }}</a>
+            {% endif %}
+        </div>
+        <div class="nawah-demo-sec__slot">
+            <nawah-dashboard-demo></nawah-dashboard-demo>
+        </div>
+    </div>
+</section>

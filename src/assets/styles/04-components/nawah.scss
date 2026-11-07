@@ -1,0 +1,236 @@
+/* Nawah Academy: approved Design V3. One dark theme, RTL first, logical properties throughout. */
+
+:root {
+  --n-navy: #071E2B;
+  --n-navy-deep: #05161F;
+  --n-surface: #0C2A38;
+  --n-surface-2: #113545;
+  --n-line: #1E4A58;
+  --n-teal: #087F73;
+  --n-emerald: #18A57A;
+  --n-off: #F5F7F6;
+  --n-white: #FFFFFF;
+  --n-soft: #C6D6D5;
+  --n-muted: #9DB4B5;
+  --n-bar: #1D5E63;
+}
+
+/* ---------- Shared parts ---------- */
+.nawah-eyebrow { font-size: 1.0625rem; font-weight: 700; color: var(--n-emerald); }
+.nawah-title { font-size: clamp(1.875rem, 3.4vw, 2.75rem); font-weight: 800; line-height: 1.2; color: var(--n-white); }
+.nawah-sub { font-size: 1.1875rem; line-height: 1.6; color: var(--n-soft); max-width: 38em; }
+.nawah-note { font-size: .875rem; line-height: 1.5; color: var(--n-muted); }
+
+.nawah-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding-inline: 24px; border-radius: 999px; border: 1px solid transparent;
+  color: var(--n-white); font-weight: 700; text-align: center;
+  transition: background-color .2s ease, border-color .2s ease;
+  &:hover { color: var(--n-white); }
+  &--primary { background: var(--n-teal); &:hover { background: var(--n-emerald); } }
+  &--ghost { background: transparent; border-color: var(--n-teal); &:hover { border-color: var(--n-emerald); } }
+  &--lg { min-height: 58px; padding-inline: 36px; font-size: 1.1875rem; font-weight: 800; }
+}
+
+.nawah-tools {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  li { border: 1px solid var(--n-emerald); border-radius: 999px; padding: 5px 16px; font-size: 1rem; font-weight: 700; color: var(--n-white); }
+}
+
+.nawah-facts { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 1rem; color: var(--n-soft); }
+.nawah-buy { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px; }
+.nawah-price {
+  display: flex; align-items: baseline; gap: 8px; color: var(--n-white); line-height: 1.2;
+  b { font-size: 1.75rem; font-weight: 900; }
+  s { font-size: 1.0625rem; color: var(--n-muted); }
+}
+
+/* ---------- Hero ---------- */
+.nawah-hero { overflow: clip; background: radial-gradient(1000px 680px at 6% 100%, #0B4A52 0%, var(--n-navy) 68%); }
+.nawah-hero__row { display: flex; flex-wrap: wrap; align-items: center; gap: 40px 48px; padding-block: 52px 64px; }
+.nawah-hero__copy { flex: 1 1 500px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.nawah-hero__title { font-size: clamp(2.75rem, 6vw, 5.375rem); line-height: 1.08; font-weight: 900; color: var(--n-white); a:hover { color: inherit; } }
+.nawah-hero__lede { font-size: 1.3125rem; line-height: 1.55; color: var(--n-soft); max-width: 29em; }
+.nawah-hero__visual { flex: 1 1 520px; min-width: 0; }
+
+.nawah-collage {
+  position: relative; aspect-ratio: 1.33; max-width: 100%;
+  svg { position: absolute; inset-block-start: 0; inset-inline-start: -10%; width: 120%; height: auto; overflow: visible; }
+  img { position: absolute; border-radius: 12px; box-shadow: 0 20px 44px rgba(0, 0, 0, .55); }
+  &__end { width: 42%; inset-inline-end: 0; inset-block-start: 47%; transform: rotate(-5deg); }
+  &__start { width: 42%; inset-inline-start: 0; inset-block-start: 44%; transform: rotate(4deg); }
+  &__main { width: 62%; inset-inline-start: 19%; inset-block-start: 23%; border-radius: 14px; box-shadow: 0 30px 70px rgba(0, 0, 0, .65) !important; }
+  &__cap { text-align: center; margin-block-start: -4px; }
+}
+
+.nawah-stickybar { display: none; }
+
+/* ---------- Program ---------- */
+.nawah-program { background: var(--n-navy-deep); border-block-start: 1px solid var(--n-line); }
+.nawah-program__in { display: flex; flex-direction: column; gap: 44px; padding-block: 68px; }
+
+.nawah-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
+  li { padding-inline-end: 18px; }
+  b { display: block; font-size: 1.125rem; font-weight: 800; color: var(--n-white); line-height: 1.3; }
+  span { display: block; font-size: .9375rem; line-height: 1.45; color: var(--n-soft); margin-block-start: 6px; }
+  &__node {
+    display: flex; align-items: center; margin-block-end: 16px;
+    i { width: 18px; height: 18px; border-radius: 9px; background: var(--n-emerald); flex: none; }
+    u { height: 1px; flex: 1 1 auto; background: var(--n-teal); margin-inline-end: -18px; }
+  }
+  li:last-child u { background: none; }
+}
+
+.nawah-showcase { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+.nawah-showcase__stage {
+  background: var(--n-navy); border: 1px solid var(--n-line); border-radius: 18px; overflow: hidden;
+  img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+}
+.nawah-showcase__tabs {
+  display: flex; flex-direction: column; gap: 8px;
+  button {
+    display: block; width: 100%; text-align: start; padding: 14px 16px; background: transparent;
+    border: 1px solid var(--n-line); border-radius: 14px; transition: border-color .2s ease, background-color .2s ease;
+    &:hover { border-color: var(--n-teal); }
+    &[aria-pressed="true"] { border-color: var(--n-emerald); background: var(--n-surface); }
+  }
+  b { display: block; font-size: 1.125rem; font-weight: 800; color: var(--n-white); line-height: 1.35; }
+  em { display: inline-block; font-style: normal; font-size: .875rem; font-weight: 700; color: var(--n-emerald); margin-inline-start: 8px; }
+  span { display: block; font-size: .9375rem; line-height: 1.5; color: var(--n-soft); margin-block-start: 3px; }
+}
+
+.nawah-pillars {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px;
+  h3 { font-size: 1.375rem; font-weight: 800; color: var(--n-white); margin-block-end: 4px; }
+  p { font-size: 1rem; line-height: 1.55; color: var(--n-soft); }
+}
+
+.nawah-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px;
+  background: var(--n-surface); border: 1px solid var(--n-line); border-radius: 18px; padding: 20px 24px;
+  h3 { font-size: 1.5rem; font-weight: 800; color: var(--n-white); }
+}
+
+/* ---------- Shelf ---------- */
+.nawah-shelf__in { display: flex; flex-direction: column; gap: 26px; padding-block: 68px; }
+.nawah-cats {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  a {
+    display: inline-flex; align-items: center; min-height: 44px; padding-inline: 18px; border: 1px solid var(--n-line);
+    border-radius: 999px; font-weight: 700; color: var(--n-soft); transition: border-color .2s ease;
+    &:hover { border-color: var(--n-emerald); color: var(--n-white); }
+  }
+}
+
+/* ---------- Demo ---------- */
+.nawah-demo-sec { background: var(--n-navy-deep); border-block-start: 1px solid var(--n-line); }
+.nawah-demo-sec__row { display: flex; flex-wrap: wrap; align-items: center; gap: 32px 56px; padding-block: 68px; }
+.nawah-demo-sec__copy { flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.nawah-demo-sec__slot { flex: 2 1 560px; min-width: 0; }
+
+nawah-dashboard-demo, nawah-project-tabs { display: block; }
+nawah-project-tabs.nawah-showcase { display: grid; }
+
+.nawah-demo {
+  background: var(--n-surface); border: 1px solid var(--n-line); border-radius: 18px;
+  padding: clamp(16px, 2.2vw, 26px); display: flex; flex-direction: column; gap: 20px; color: var(--n-off);
+}
+.nawah-demo__tag { align-self: flex-start; font-size: .875rem; font-weight: 700; color: var(--n-navy); background: var(--n-off); border-radius: 6px; padding: 2px 10px; }
+.nawah-demo__slicers {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;
+  button {
+    min-height: 44px; padding: 4px 8px; border-radius: 10px; font-size: .9375rem; font-weight: 700; line-height: 1.25;
+    background: transparent; border: 1px solid var(--n-line); color: var(--n-soft); transition: background-color .2s ease, border-color .2s ease;
+    &:hover { border-color: var(--n-teal); }
+    &[aria-pressed="true"] { background: var(--n-surface-2); border-color: var(--n-emerald); color: var(--n-white); }
+  }
+}
+.nawah-demo__kpis {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 30px; font-variant-numeric: tabular-nums;
+  span { display: block; font-size: .875rem; color: var(--n-muted); }
+  b { font-size: 1.4375rem; font-weight: 800; line-height: 1.3; color: var(--n-white); }
+}
+.nawah-demo__main {
+  flex: 1 1 210px;
+  label { display: block; font-size: .9375rem; color: var(--n-soft); }
+  div { display: flex; align-items: baseline; gap: 8px; }
+  b { font-size: clamp(2.25rem, 4vw, 3.125rem); font-weight: 900; line-height: 1.1; }
+  small { font-size: .9375rem; color: var(--n-soft); }
+}
+.nawah-demo__peak { font-size: 1.25rem; font-weight: 800; color: var(--n-white); margin-block-end: 12px; em { font-style: normal; color: var(--n-emerald); } }
+.nawah-demo__bars {
+  display: flex; align-items: flex-end; gap: 4px; height: 130px; border-block-end: 1px solid var(--n-line);
+  i { display: block; flex: 1 1 0; min-width: 0; border-radius: 4px 4px 0 0; background: var(--n-bar); transition: height .35s ease; }
+  i.is-top { background: var(--n-emerald); }
+}
+.nawah-demo__axis { display: flex; justify-content: space-between; margin-block-start: 6px; font-size: .8125rem; color: var(--n-muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- Product page extras ---------- */
+.nawah-extra { display: flex; flex-direction: column; gap: 20px; }
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 1100px) {
+  /* Seven weeks need more room than a row gives here, so the track turns vertical */
+  .nawah-track {
+    grid-auto-flow: row; grid-template-columns: minmax(0, 1fr);
+    li { padding: 0 0 18px; display: flex; gap: 14px; }
+    li > div:last-child { min-width: 0; }
+    b { font-size: 1.25rem; }
+    span { margin-block-start: 2px; font-size: 1rem; }
+    &__node {
+      position: relative; flex: none; flex-direction: column; align-self: stretch; width: 14px; margin: 6px 0 0;
+      i { width: 14px; height: 14px; border-radius: 7px; }
+      u { position: absolute; inset-block: 14px -24px; inset-inline-start: 6.5px; width: 1px; height: auto; margin: 0; }
+    }
+    li:last-child u { display: none; }
+  }
+}
+
+@media (max-width: 980px) {
+  .nawah-showcase, nawah-project-tabs.nawah-showcase { grid-template-columns: minmax(0, 1fr); }
+  .nawah-showcase__tabs {
+    flex-direction: row; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+    &::-webkit-scrollbar { display: none; }
+    button { flex: 0 0 min(250px, 74%); }
+  }
+  .nawah-stickybar:not([hidden]) {
+    display: flex; position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 15; align-items: center; gap: 14px;
+    background: var(--n-surface); border-block-start: 1px solid var(--n-line);
+    padding-block: 9px calc(9px + env(safe-area-inset-bottom, 0px)); padding-inline: 16px;
+    .nawah-btn { flex: 1 1 auto; min-height: 52px; font-size: 1.125rem; font-weight: 800; }
+  }
+  .nawah-stickybar__price { flex: none; font-size: 1.25rem; font-weight: 900; color: var(--n-white); }
+}
+
+@media (max-width: 760px) {
+  .nawah-hero__row { padding-block: 26px 34px; gap: 22px; }
+  .nawah-hero__copy, .nawah-hero__visual { flex-basis: 100%; }
+  .nawah-hero__copy { gap: 13px; }
+  .nawah-hero__title { font-size: 2.75rem; }
+  .nawah-hero__lede { font-size: 1.125rem; }
+  .nawah-tools li { font-size: .9375rem; padding: 4px 13px; }
+  .nawah-buy { width: 100%; }
+  .nawah-buy .nawah-btn--lg { flex: 1 1 100%; min-height: 54px; font-size: 1.125rem; }
+  .nawah-hero__more { display: none; }
+
+  .nawah-program__in { padding-block: 40px; gap: 32px; }
+  .nawah-pillars { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .nawah-cta { padding: 16px; }
+  .nawah-shelf__in, .nawah-demo-sec__row { padding-block: 40px; }
+  .nawah-demo-sec__copy, .nawah-demo-sec__slot { flex-basis: 100%; }
+  .nawah-sub { font-size: 1.0625rem; }
+  .nawah-cats {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+    a { flex: none; }
+  }
+  .nawah-demo__slicers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nawah-demo__kpis { gap: 10px 20px; b { font-size: 1.25rem; } }
+  .nawah-demo__main { flex-basis: 100%; b { font-size: 2.25rem; } }
+  .nawah-demo__bars { height: 110px; gap: 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nawah-btn, .nawah-demo__bars i, .nawah-demo__slicers button, .nawah-showcase__tabs button { transition: none; }
+}
